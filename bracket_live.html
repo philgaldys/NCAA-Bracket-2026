@@ -324,14 +324,23 @@ r1('hp','wis',83,82);   r1('ark','haw',97,78);
 r1('tex','byu',79,71);  r1('gonz','kenn',73,64);
 r1('mia','miz',80,66);  r1('pur','quc',104,71);
 
-// ─── CONFIRMED ROUND 2 FINALS ────────────────────────────────────────────────
-// Only add here once a game is 100% officially final
-r2('mich','slu',95,72);
-r2('msu','lou',77,69);
-r2('duke','tcu',81,58);
-r2('hou','txam',88,57);
-r2('tex','gonz',74,68);
-// Remaining R2 games: ESPN live fetch will populate as they complete
+// ─── ALL ROUND 2 FINALS — complete ───────────────────────────────────────────
+r2('mich','slu',95,72);   // Michigan def. Saint Louis
+r2('msu','lou',77,69);    // Michigan State def. Louisville
+r2('duke','tcu',81,58);   // Duke def. TCU
+r2('hou','txam',88,57);   // Houston def. Texas A&M
+r2('tex','gonz',74,68);   // Texas def. Gonzaga
+r2('ill','vcu',76,55);    // Illinois def. VCU
+r2('neb','van',74,72);    // Nebraska def. Vanderbilt
+r2('ark','hp',94,88);     // Arkansas def. High Point
+r2('pur','mia',79,69);    // Purdue def. Miami (FL)
+r2('isu','uk',82,63);     // Iowa State def. Kentucky
+r2('sju','ku',67,65);     // St. John's def. Kansas
+r2('tenn','uva',79,72);   // Tennessee def. Virginia
+r2('iowa','fla',73,72);   // Iowa def. Florida
+r2('ariz','usu',78,66);   // Arizona def. Utah State
+r2('conn','ucla',73,57);  // UConn def. UCLA
+r2('ala','ttu',90,65);    // Alabama def. Texas Tech
 
 // ─── ESPN ABBREVIATION → POOL KEY ────────────────────────────────────────────
 const AMAP = {
@@ -406,22 +415,50 @@ function regionHTML(id, matchups, store){
     <div class="matchups">${matchups.map(([a,b])=>matchup(a,b,store)).join('')}</div></div>`;
 }
 
+// ─── SWEET 16 MATCHUPS (actual bracket pairings, not derived from R2) ─────────
+// West:    Purdue vs Texas | Arizona vs Arkansas
+// South:   Nebraska vs Iowa | Houston vs Illinois
+// East:    Duke vs St. John's | UConn vs Michigan State   (Fri Mar 27)
+// Midwest: Michigan vs Alabama | Iowa State vs Tennessee  (Fri Mar 27)
+const S16 = {
+  west:   [["pur","tex"],["ariz","ark"]],
+  south:  [["neb","iowa"],["hou","ill"]],
+  east:   [["duke","sju"],["conn","msu"]],
+  midwest:[["mich","ala"],["isu","tenn"]],
+};
+
+// S16 results store — hardcode finals, ESPN fills live games
+const S16res = {};
+function s16f(w, l, ws, ls){
+  S16res[w] = {ws, ls, w, l, status:'post'};
+  S16res[l] = {ws:ls, ls:ws, w, l, status:'post'};
+}
+
+// ─── CONFIRMED SWEET 16 RESULTS ──────────────────────────────────────────────
+s16f('iowa','neb',73,66);  // Iowa def. Nebraska
+s16f('pur','tex',79,77);   // Purdue def. Texas
+// Arizona vs Arkansas — scheduled tonight
+// Houston vs Illinois — scheduled tonight
+// Friday games not yet played
+
 // ─── ADVANCE SLOT (for S16 / E8) ─────────────────────────────────────────────
-// Returns winner of a matchup from R2res, or null if not yet final
 function r2win(a, b){
   const ga = R2res[a], gb = R2res[b];
-  // Only return a winner if these two teams specifically played each other
-  if(ga && (ga.status==='post'||ga.status==='closed') && ga.w===a && ga.l===b) return a;
-  if(ga && (ga.status==='post'||ga.status==='closed') && ga.w===b && ga.l===a) return b;
-  if(gb && (gb.status==='post'||gb.status==='closed') && gb.w===b && gb.l===a) return b;
-  if(gb && (gb.status==='post'||gb.status==='closed') && gb.w===a && gb.l===b) return a;
+  if(ga && ga.status==='post' && ga.w===a && ga.l===b) return a;
+  if(ga && ga.status==='post' && ga.w===b && ga.l===a) return b;
+  if(gb && gb.status==='post' && gb.w===b && gb.l===a) return b;
+  if(gb && gb.status==='post' && gb.w===a && gb.l===b) return a;
   return null;
 }
 
-// Returns winner of an S16 matchup (only checks R2res for post-R2 games)
 function s16win(a, b){
   if(!a||!b) return null;
-  return r2win(a, b); // S16 results will be in R2res once ESPN picks them up
+  const ga = S16res[a], gb = S16res[b];
+  if(ga && ga.status==='post' && ga.w===a && ga.l===b) return a;
+  if(ga && ga.status==='post' && ga.w===b && ga.l===a) return b;
+  if(gb && gb.status==='post' && gb.w===b && gb.l===a) return b;
+  if(gb && gb.status==='post' && gb.w===a && gb.l===b) return a;
+  return null;
 }
 
 function advSlot(key){
@@ -450,24 +487,30 @@ function buildR2(){
 }
 
 function buildS16(){
-  // S16 matchups: pairs of R2 winners within each region
-  // East:    (Duke/TCU winner) vs (MSU/LOU winner) | (SJU/KU winner) vs (UCLA/CONN winner)
-  // South:   (FLA/IOWA winner) vs (VAN/NEB winner) | (VCU/ILL winner) vs (TXAM/HOU winner)
-  // Midwest: (MICH/SLU winner) vs (TTU/ALA winner) | (TENN/UVA winner) vs (UK/ISU winner)
-  // West:    (ARIZ/USU winner) vs (HP/ARK winner)  | (TEX/GONZ winner) vs (MIA/PUR winner)
-  const regs = [
-    {id:'east',   pairs:[[r2win('duke','tcu'),r2win('msu','lou')],[r2win('sju','ku'),r2win('ucla','conn')]]},
-    {id:'south',  pairs:[[r2win('fla','iowa'),r2win('van','neb')],[r2win('vcu','ill'),r2win('txam','hou')]]},
-    {id:'midwest',pairs:[[r2win('mich','slu'),r2win('ttu','ala')],[r2win('tenn','uva'),r2win('uk','isu')]]},
-    {id:'west',   pairs:[[r2win('ariz','usu'),r2win('hp','ark')],[r2win('tex','gonz'),r2win('mia','pur')]]},
-  ];
   const labels = {east:'East',south:'South',midwest:'Midwest',west:'West'};
   let html = '<div class="adv-grid">';
-  regs.forEach(reg=>{
-    html+=`<div class="adv-region ${reg.id}"><div class="adv-title">🏀 ${labels[reg.id]}</div>`;
-    reg.pairs.forEach(([a,b],i)=>{
+  // Show regions in logical order: West, South, East, Midwest
+  ['west','south','east','midwest'].forEach(id=>{
+    html+=`<div class="adv-region ${id}"><div class="adv-title">🏀 ${labels[id]}</div>`;
+    S16[id].forEach(([a,b],i)=>{
       if(i>0) html+='<div class="adv-sep"></div>';
-      html+=advSlot(a)+'<div class="adv-vs">vs</div>'+advSlot(b);
+      // Show the matchup with live/final scores using S16res
+      const ga = S16res[a], gb = S16res[b];
+      const g = ga || gb;
+      let aWin=false,aLose=false,bWin=false,bLose=false,aLive=false,bLive=false;
+      let aS='',aO='',bS='',bO='';
+      if(g && g.status==='post'){
+        aS=ga?ga.ws:gb.ls; aO=ga?ga.ls:gb.ws;
+        bS=gb?gb.ws:ga.ls; bO=gb?gb.ls:ga.ws;
+        if(g.w===a){aWin=true;bLose=true;}else{bWin=true;aLose=true;}
+      } else if(g && (g.status==='inprogress'||g.status==='in')){
+        aLive=true;bLive=true;
+        aS=ga?ga.ws:(gb?gb.ls:''); aO=ga?ga.ls:(gb?gb.ws:'');
+        bS=gb?gb.ws:(ga?ga.ls:''); bO=gb?gb.ls:(ga?ga.ws:'');
+      }
+      html+=teamRow(a,aWin,aLose,aS,aO,aLive);
+      html+='<div class="adv-vs">vs</div>';
+      html+=teamRow(b,bWin,bLose,bS,bO,bLive);
     });
     html+='</div>';
   });
@@ -475,17 +518,11 @@ function buildS16(){
 }
 
 function buildE8(){
-  // E8: winner of each S16 matchup pair within the region
-  const s16pairs = {
-    east:   [[r2win('duke','tcu'),r2win('msu','lou')],  [r2win('sju','ku'),r2win('ucla','conn')]],
-    south:  [[r2win('fla','iowa'),r2win('van','neb')],  [r2win('vcu','ill'),r2win('txam','hou')]],
-    midwest:[[r2win('mich','slu'),r2win('ttu','ala')],  [r2win('tenn','uva'),r2win('uk','isu')]],
-    west:   [[r2win('ariz','usu'),r2win('hp','ark')],   [r2win('tex','gonz'),r2win('mia','pur')]],
-  };
   const labels = {east:'East',south:'South',midwest:'Midwest',west:'West'};
   const dates  = {east:'Mar 28',south:'Mar 29',midwest:'Mar 29',west:'Mar 28'};
   let html = '<div class="adv-grid">';
-  Object.entries(s16pairs).forEach(([id,[[a,b],[c,d]]])=>{
+  ['west','south','east','midwest'].forEach(id=>{
+    const [[a,b],[c,d]] = S16[id];
     const top = s16win(a,b), bot = s16win(c,d);
     html+=`<div class="adv-region ${id}">
       <div class="adv-title">🏀 ${labels[id]} <span style="font-size:0.7rem;color:var(--muted);font-weight:400">${dates[id]}</span></div>`;
@@ -497,9 +534,9 @@ function buildE8(){
 
 function buildScoreboard(){
   const elim = new Set();
-  // Eliminated = lost in R1 OR lost in R2
   Object.values(R1res).forEach(g=>{ if(g.l) elim.add(g.l); });
-  Object.values(R2res).forEach(g=>{ if((g.status==='post'||g.status==='closed') && g.l) elim.add(g.l); });
+  Object.values(R2res).forEach(g=>{ if(g.status==='post' && g.l) elim.add(g.l); });
+  Object.values(S16res).forEach(g=>{ if(g.status==='post' && g.l) elim.add(g.l); });
   document.getElementById('scoreboard').innerHTML = Object.entries(OW).map(([k,o])=>{
     const alive = OT[k].filter(t=>!elim.has(t)).length;
     return `<div class="sc"><div class="sc-name" style="color:${o.c}">${o.l}</div>
@@ -516,18 +553,26 @@ async function fetchESPN(date){
   return r.json();
 }
 
+// All S16 matchup pairs flattened for quick lookup
+const S16_PAIRS = new Set(
+  Object.values(S16).flat().map(([a,b])=>[a,b].sort().join('|'))
+);
+
+function isS16matchup(a, b){ return S16_PAIRS.has([a,b].sort().join('|')); }
+function isR2matchup(a, b){
+  return Object.values(R2).flat().some(([x,y])=>(x===a&&y===b)||(x===b&&y===a));
+}
+
 function processESPN(data){
   if(!data.events) return;
   data.events.forEach(ev=>{
     const comp = ev.competitions?.[0]; if(!comp) return;
     const state = comp.status?.type?.state || comp.status?.type?.name || '';
-    // Normalize state
     let st = 'pre';
     if(state==='in' || state.includes('PROGRESS')) st='inprogress';
     else if(state==='post' || state.includes('FINAL') || state==='closed') st='post';
     if(st==='pre') return;
 
-    // Get both team keys
     const comps = comp.competitors || [];
     if(comps.length !== 2) return;
     const keyA = espnKey(comps[0].team?.abbreviation);
@@ -537,21 +582,27 @@ function processESPN(data){
     const sA = parseInt(comps[0].score||0);
     const sB = parseInt(comps[1].score||0);
 
-    // Skip if we already have a confirmed final for this matchup
-    if(R2res[keyA] && (R2res[keyA].status==='post') && R2res[keyA].l===keyB) return;
-    if(R2res[keyB] && (R2res[keyB].status==='post') && R2res[keyB].l===keyA) return;
+    // Determine which store to write to
+    const s16match = isS16matchup(keyA, keyB);
+    const r2match  = isR2matchup(keyA, keyB);
+    if(!s16match && !r2match) return; // not a pool game
+
+    const store = s16match ? S16res : R2res;
+
+    // Don't overwrite confirmed finals
+    if(store[keyA] && store[keyA].status==='post' && store[keyA].l===keyB) return;
+    if(store[keyB] && store[keyB].status==='post' && store[keyB].l===keyA) return;
 
     if(st==='post'){
       const w = comps[0].winner ? keyA : keyB;
       const l = w===keyA ? keyB : keyA;
       const ws = w===keyA ? sA : sB;
       const ls = w===keyA ? sB : sA;
-      R2res[w] = {ws, ls, w, l, status:'post'};
-      R2res[l] = {ws:ls, ls:ws, w, l, status:'post'};
+      store[w] = {ws, ls, w, l, status:'post'};
+      store[l] = {ws:ls, ls:ws, w, l, status:'post'};
     } else {
-      // Live game — store current score
-      R2res[keyA] = {ws:sA, ls:sB, w:null, l:null, status:'inprogress'};
-      R2res[keyB] = {ws:sB, ls:sA, w:null, l:null, status:'inprogress'};
+      store[keyA] = {ws:sA, ls:sB, w:null, l:null, status:'inprogress'};
+      store[keyB] = {ws:sB, ls:sA, w:null, l:null, status:'inprogress'};
     }
   });
 }
@@ -568,11 +619,13 @@ async function load(){
       try{ const data = await fetchESPN(d); processESPN(data); }catch(e){}
     }));
 
-    const liveCount  = Object.values(R2res).filter(g=>g.status==='inprogress').length/2;
-    const finalCount = new Set(Object.values(R2res).filter(g=>g.status==='post').map(g=>g.w+g.l)).size;
+    const allRes = [...Object.values(R2res), ...Object.values(S16res)];
+    const liveCount  = allRes.filter(g=>g.status==='inprogress').length/2;
+    const r2Finals   = new Set(Object.values(R2res).filter(g=>g.status==='post').map(g=>g.w+g.l)).size;
+    const s16Finals  = new Set(Object.values(S16res).filter(g=>g.status==='post').map(g=>g.w+g.l)).size;
     const ts = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
     document.getElementById('status-bar').innerHTML =
-      `Updated <b>${ts}</b> · R2: ${finalCount} games final` +
+      `Updated <b>${ts}</b> · R2: ${r2Finals}/16 final · S16: ${s16Finals}/8 final` +
       (liveCount>0 ? ` · <span class="live-tag">🔴 ${Math.round(liveCount)} LIVE — auto-refreshing</span>` : ' · Refresh for latest');
 
     if(liveCount > 0) setTimeout(load, 30000);
