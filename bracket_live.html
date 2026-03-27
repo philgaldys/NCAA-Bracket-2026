@@ -489,12 +489,10 @@ function buildR2(){
 function buildS16(){
   const labels = {east:'East',south:'South',midwest:'Midwest',west:'West'};
   let html = '<div class="adv-grid">';
-  // Show regions in logical order: West, South, East, Midwest
   ['west','south','east','midwest'].forEach(id=>{
     html+=`<div class="adv-region ${id}"><div class="adv-title">🏀 ${labels[id]}</div>`;
     S16[id].forEach(([a,b],i)=>{
       if(i>0) html+='<div class="adv-sep"></div>';
-      // Show the matchup with live/final scores using S16res
       const ga = S16res[a], gb = S16res[b];
       const g = ga || gb;
       let aWin=false,aLose=false,bWin=false,bLose=false,aLive=false,bLive=false;
@@ -503,11 +501,12 @@ function buildS16(){
         aS=ga?ga.ws:gb.ls; aO=ga?ga.ls:gb.ws;
         bS=gb?gb.ws:ga.ls; bO=gb?gb.ls:ga.ws;
         if(g.w===a){aWin=true;bLose=true;}else{bWin=true;aLose=true;}
-      } else if(g && (g.status==='inprogress'||g.status==='in')){
-        aLive=true;bLive=true;
+      } else if(g && g.status==='inprogress'){
+        aLive=true; bLive=true;
         aS=ga?ga.ws:(gb?gb.ls:''); aO=ga?ga.ls:(gb?gb.ws:'');
         bS=gb?gb.ws:(ga?ga.ls:''); bO=gb?gb.ls:(ga?ga.ws:'');
       }
+      // Always show both teams — game just hasn't been played yet if no result
       html+=teamRow(a,aWin,aLose,aS,aO,aLive);
       html+='<div class="adv-vs">vs</div>';
       html+=teamRow(b,bWin,bLose,bS,bO,bLive);
@@ -526,7 +525,15 @@ function buildE8(){
     const top = s16win(a,b), bot = s16win(c,d);
     html+=`<div class="adv-region ${id}">
       <div class="adv-title">🏀 ${labels[id]} <span style="font-size:0.7rem;color:var(--muted);font-weight:400">${dates[id]}</span></div>`;
-    html+=advSlot(top)+'<div class="adv-vs">vs</div>'+advSlot(bot);
+    if(top && bot){
+      // Both S16 winners known — show the E8 matchup (may have a result too)
+      const ga = S16res[top]?.status==='post' && S16res[top]?.l===bot ? null : null; // E8 not in S16res
+      html += teamRow(top,false,false,'','',false);
+      html += '<div class="adv-vs">vs</div>';
+      html += teamRow(bot,false,false,'','',false);
+    } else {
+      html += advSlot(top) + '<div class="adv-vs">vs</div>' + advSlot(bot);
+    }
     html+='</div>';
   });
   document.getElementById('e8').innerHTML = html+'</div>';
