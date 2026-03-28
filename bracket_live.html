@@ -6,30 +6,26 @@
 <title>Suzi's 2026 NCAA Playoffs Bracket</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#0a0e1a; --panel:#111827; --border:#1e2d45; --accent:#f59e0b;
-  --text:#e2e8f0; --muted:#64748b;
-  --phil:#a78bfa; --suzi:#34d399; --mel:#f472b6; --bob:#fb923c;
-  --dave:#60a5fa; --kristine:#f87171; --vin:#facc15; --carla:#4ade80;
-}
+:root{--bg:#0a0e1a;--panel:#111827;--border:#1e2d45;--accent:#f59e0b;--text:#e2e8f0;--muted:#64748b;
+  --phil:#a78bfa;--suzi:#34d399;--mel:#f472b6;--bob:#fb923c;--dave:#60a5fa;--kristine:#f87171;--vin:#facc15;--carla:#4ade80;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:'Source Sans 3',sans-serif;min-height:100vh;padding:16px;
   background-image:radial-gradient(ellipse at 20% 20%,#1e3a5f22 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,#2d1b4e22 0%,transparent 60%);}
 header{text-align:center;margin-bottom:20px;padding:20px;border-bottom:2px solid var(--accent);}
-header h1{font-family:'Oswald',sans-serif;font-size:2.2rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+header h1{font-family:'Oswald',sans-serif;font-size:2.2rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
   background:linear-gradient(135deg,var(--accent),#fbbf24,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-header p{color:var(--muted);font-size:0.85rem;margin-top:4px;letter-spacing:0.1em;text-transform:uppercase;}
-#status-bar{text-align:center;padding:8px 16px;background:var(--panel);border:1px solid var(--border);border-radius:8px;margin-bottom:16px;font-size:0.78rem;color:var(--muted);}
-#status-bar b{color:var(--accent);} .live-tag{color:#22c55e;font-weight:700;}
+header p{color:var(--muted);font-size:.85rem;margin-top:4px;letter-spacing:.1em;text-transform:uppercase;}
+#status-bar{text-align:center;padding:8px 16px;background:var(--panel);border:1px solid var(--border);border-radius:8px;margin-bottom:16px;font-size:.78rem;color:var(--muted);}
+#status-bar b{color:var(--accent);}.live-tag{color:#22c55e;font-weight:700;}
 #scoreboard{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:20px;padding:14px 16px;background:var(--panel);border:1px solid var(--border);border-radius:12px;}
 .sc{text-align:center;min-width:90px;padding:10px 14px;background:#0f172a;border-radius:8px;border:1px solid var(--border);}
-.sc-name{font-family:'Oswald',sans-serif;font-size:0.85rem;letter-spacing:0.06em;margin-bottom:4px;}
-.sc-num{font-size:1.6rem;font-weight:700;line-height:1;}
-.sc-lbl{font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:3px;}
+.sc-name{font-family:'Oswald',sans-serif;font-size:.85rem;letter-spacing:.06em;margin-bottom:4px;}
+.sc-num{font-size:1.6rem;font-weight:700;line-height:1;}.sc-lbl{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:3px;}
 .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:20px;padding:12px 16px;background:var(--panel);border-radius:10px;border:1px solid var(--border);}
-.legend-item{display:flex;align-items:center;gap:6px;font-size:0.82rem;font-family:'Oswald',sans-serif;}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:.82rem;font-family:'Oswald',sans-serif;}
 .dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
-.sec-hdr{max-width:1400px;margin:24px auto 12px;font-family:'Oswald',sans-serif;font-size:1.3rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:8px;}
+.sec-hdr{max-width:1400px;margin:24px auto 12px;font-family:'Oswald',sans-serif;font-size:1.3rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:8px;}
+/* Regions grid */
 .regions{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:1400px;margin:0 auto 24px;}
 .region{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;position:relative;overflow:hidden;}
 .region::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
@@ -37,7 +33,7 @@ header p{color:var(--muted);font-size:0.85rem;margin-top:4px;letter-spacing:0.1e
 .region.south::before{background:linear-gradient(90deg,#ef4444,#dc2626);}
 .region.midwest::before{background:linear-gradient(90deg,#f59e0b,#d97706);}
 .region.west::before{background:linear-gradient(90deg,#10b981,#059669);}
-.reg-title{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.reg-title{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);}
 .region.east .reg-title{color:#3b82f6;}.region.south .reg-title{color:#ef4444;}
 .region.midwest .reg-title{color:#f59e0b;}.region.west .reg-title{color:#10b981;}
 .matchups{display:flex;flex-direction:column;gap:5px;}
@@ -45,19 +41,20 @@ header p{color:var(--muted);font-size:0.85rem;margin-top:4px;letter-spacing:0.1e
 .mbr{width:12px;flex-shrink:0;position:relative;}
 .mbr::before{content:'';position:absolute;left:50%;top:0;bottom:0;border-left:2px solid var(--border);border-top:2px solid var(--border);border-bottom:2px solid var(--border);border-radius:2px 0 0 2px;width:6px;}
 .mteams{flex:1;display:flex;flex-direction:column;gap:2px;}
-.tr{display:flex;align-items:center;gap:6px;padding:5px 8px;background:#0f172a;border-radius:5px;border:1px solid var(--border);position:relative;overflow:hidden;transition:all 0.2s;}
+/* Team row */
+.tr{display:flex;align-items:center;gap:6px;padding:5px 8px;background:#0f172a;border-radius:5px;border:1px solid var(--border);position:relative;overflow:hidden;}
 .tr::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
 .tr.win{background:#14532d44;border-color:#22c55e;}
-.tr.win::after{content:'✓';position:absolute;right:6px;color:#22c55e;font-size:0.72rem;font-weight:700;}
-.tr.lose{opacity:0.38;}.tr.lose .tn{text-decoration:line-through;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.tr.win::after{content:'✓';position:absolute;right:6px;color:#22c55e;font-size:.72rem;font-weight:700;}
+.tr.lose{opacity:.38;}.tr.lose .tn{text-decoration:line-through;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .tr.live{border-color:#facc1599;}
-.tr.live::after{content:'●';position:absolute;right:6px;color:#facc15;font-size:0.72rem;animation:pulse 1s infinite;}
-.sd{font-family:'Oswald',sans-serif;font-size:0.7rem;color:var(--muted);width:16px;text-align:center;flex-shrink:0;}
-.tn{font-size:0.76rem;font-weight:600;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.sc-d{font-family:'Oswald',sans-serif;font-size:0.76rem;font-weight:700;flex-shrink:0;margin-right:18px;}
-.sc-d.lv{color:#facc15;}.sc-d.fn{color:var(--accent);}
-.bdg{font-family:'Oswald',sans-serif;font-size:0.63rem;font-weight:600;padding:1px 5px;border-radius:20px;flex-shrink:0;}
+.tr.live::after{content:'●';position:absolute;right:6px;color:#facc15;font-size:.72rem;animation:pulse 1s infinite;}
+.sd{font-family:'Oswald',sans-serif;font-size:.7rem;color:var(--muted);width:16px;text-align:center;flex-shrink:0;}
+.tn{font-size:.76rem;font-weight:600;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sc-d{font-family:'Oswald',sans-serif;font-size:.76rem;font-weight:700;flex-shrink:0;margin-right:18px;}
+.sc-d.fn{color:var(--accent);}.sc-d.lv{color:#facc15;}
+.bdg{font-family:'Oswald',sans-serif;font-size:.63rem;font-weight:600;padding:1px 5px;border-radius:20px;flex-shrink:0;}
 .b-phil::before{background:var(--phil);}.b-suzi::before{background:var(--suzi);}
 .b-mel::before{background:var(--mel);}.b-bob::before{background:var(--bob);}
 .b-dave::before{background:var(--dave);}.b-kristine::before{background:var(--kristine);}
@@ -71,13 +68,12 @@ header p{color:var(--muted);font-size:0.85rem;margin-top:4px;letter-spacing:0.1e
 .c-vin{background:#78350f55;color:var(--vin);border:1px solid #facc1533;}
 .c-carla{background:#14532d55;color:var(--carla);border:1px solid #4ade8033;}
 /* First Four */
-.ff-wrap{max-width:1400px;margin:0 auto 8px;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px;}
-.ff-title{font-family:'Oswald',sans-serif;font-size:0.9rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;}
+.ff-wrap{max-width:1400px;margin:0 auto 24px;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px;}
 .ff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;}
 .ff-game{background:#0f172a;border:1px solid var(--border);border-radius:8px;padding:8px 10px;}
-.ff-lbl{font-size:0.65rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;font-family:'Oswald',sans-serif;}
-.ff-note{font-size:0.65rem;color:var(--muted);padding:3px 6px;}
-/* Advance grid (S16, E8) */
+.ff-lbl{font-size:.65rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;font-family:'Oswald',sans-serif;}
+.ff-note{font-size:.65rem;color:var(--muted);padding:3px 6px;}
+/* 4-col adv grid */
 .adv-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;max-width:1400px;margin:0 auto 24px;}
 .adv-region{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px;position:relative;overflow:hidden;}
 .adv-region::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
@@ -85,31 +81,45 @@ header p{color:var(--muted);font-size:0.85rem;margin-top:4px;letter-spacing:0.1e
 .adv-region.south::before{background:linear-gradient(90deg,#ef4444,#dc2626);}
 .adv-region.midwest::before{background:linear-gradient(90deg,#f59e0b,#d97706);}
 .adv-region.west::before{background:linear-gradient(90deg,#10b981,#059669);}
-.adv-title{font-family:'Oswald',sans-serif;font-size:0.9rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+.adv-title{font-family:'Oswald',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
 .adv-region.east .adv-title{color:#3b82f6;}.adv-region.south .adv-title{color:#ef4444;}
 .adv-region.midwest .adv-title{color:#f59e0b;}.adv-region.west .adv-title{color:#10b981;}
-.adv-slot{padding:7px 10px;background:#0f172a;border-radius:6px;border:1px solid var(--border);margin-bottom:5px;display:flex;align-items:center;gap:6px;}
-.adv-slot.set{border-color:#22c55e44;}
-.adv-slot.tbd{color:var(--muted);}
-.adv-sd{font-family:'Oswald',sans-serif;font-size:0.7rem;color:var(--muted);width:16px;flex-shrink:0;}
-.adv-nm{font-size:0.76rem;font-weight:600;flex:1;}
-.adv-vs{text-align:center;font-family:'Oswald',sans-serif;font-size:0.7rem;color:var(--muted);padding:2px 0;letter-spacing:0.1em;}
 .adv-sep{border-top:1px solid var(--border);margin:8px 0;}
-/* Finals */
-.finals{max-width:700px;margin:0 auto 30px;background:var(--panel);border:1px solid #f59e0b55;border-radius:14px;padding:20px;text-align:center;}
-.finals h2{font-family:'Oswald',sans-serif;font-size:1.2rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px;}
-.finals .sub{font-size:0.78rem;color:var(--muted);margin-bottom:16px;letter-spacing:0.06em;text-transform:uppercase;}
-.sf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
-.sf-box{background:#0f172a;border:1px solid var(--border);border-radius:8px;padding:12px;}
-.sf-lbl{font-family:'Oswald',sans-serif;font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;}
-.sf-box.mw .sf-lbl{color:#f59e0b;}.sf-box.ws .sf-lbl{color:#10b981;}
-.slot{border-bottom:1px solid var(--border);padding:8px 0;font-size:0.82rem;color:var(--muted);min-height:32px;}
-.champ-box{background:#0f172a;border:2px solid #f59e0b55;border-radius:10px;padding:16px;}
-.champ-lbl{font-family:'Oswald',sans-serif;font-size:0.85rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;}
-.vs{font-family:'Oswald',sans-serif;font-size:0.7rem;color:var(--muted);padding:4px 0;letter-spacing:0.1em;}
+.adv-vs{text-align:center;font-family:'Oswald',sans-serif;font-size:.7rem;color:var(--muted);padding:2px 0;letter-spacing:.1em;}
+.tbd{display:flex;align-items:center;gap:6px;padding:5px 8px;background:#0f172a;border-radius:5px;border:1px dashed var(--border);color:var(--muted);font-size:.76rem;}
+/* Final Four */
+.ff4-wrap{max-width:900px;margin:0 auto 24px;}
+.ff4-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.ff4-box{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;position:relative;overflow:hidden;}
+.ff4-box::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
+.ff4-box.semi1::before{background:linear-gradient(90deg,#10b981,#ef4444);}
+.ff4-box.semi2::before{background:linear-gradient(90deg,#3b82f6,#f59e0b);}
+.ff4-lbl{font-family:'Oswald',sans-serif;font-size:.8rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;}
+.champ-box{background:var(--panel);border:2px solid #f59e0b77;border-radius:14px;padding:20px;text-align:center;position:relative;overflow:hidden;}
+.champ-box::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent),#fbbf24,var(--accent));}
+.champ-lbl{font-family:'Oswald',sans-serif;font-size:1rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;}
 @media(max-width:1200px){.adv-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:900px){.regions{grid-template-columns:1fr;}.adv-grid{grid-template-columns:1fr 1fr;}.sf-grid{grid-template-columns:1fr;}header h1{font-size:1.6rem;}}
+@media(max-width:900px){.regions,.ff4-grid{grid-template-columns:1fr;}.adv-grid{grid-template-columns:1fr 1fr;}header h1{font-size:1.6rem;}}
 @media(max-width:600px){.adv-grid{grid-template-columns:1fr;}}
+/* Collapsible sections */
+details{max-width:1400px;margin:0 auto 16px;}
+summary{
+  list-style:none;cursor:pointer;user-select:none;
+  font-family:'Oswald',sans-serif;font-size:1.3rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
+  border-bottom:2px solid var(--accent);padding-bottom:8px;margin-bottom:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding-right:4px;margin-top:24px;
+}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:'▼';font-size:.7rem;color:var(--muted);margin-left:10px;transition:transform .2s;flex-shrink:0;}
+details[open] summary::after{content:'▲';}
+details[open]>*:not(summary){margin-top:12px;}
+.sec-hdr-plain{
+  max-width:1400px;margin:24px auto 12px;font-family:'Oswald',sans-serif;font-size:1.3rem;
+  font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
+  border-bottom:2px solid var(--accent);padding-bottom:8px;
+}
 </style>
 </head>
 <body>
@@ -117,7 +127,7 @@ header p{color:var(--muted);font-size:0.85rem;margin-top:4px;letter-spacing:0.1e
   <h1>Suzi's 2026 NCAA Playoffs Bracket</h1>
   <p>Men's Division I Basketball Championship · 2026</p>
 </header>
-<div id="status-bar">⏳ Loading live scores...</div>
+<div id="status-bar">⏳ Loading scores...</div>
 <div id="scoreboard"></div>
 <div class="legend">
   <div class="legend-item"><div class="dot" style="background:var(--phil)"></div>Phil</div>
@@ -130,422 +140,338 @@ header p{color:var(--muted);font-size:0.85rem;margin-top:4px;letter-spacing:0.1e
   <div class="legend-item"><div class="dot" style="background:var(--carla)"></div>Carla</div>
 </div>
 
-<!-- FIRST FOUR -->
-<div class="sec-hdr">⚡ First Four — Mar 17–18</div>
-<div class="ff-wrap" style="margin-bottom:24px">
-  <div class="ff-grid">
-    <div class="ff-game"><div class="ff-lbl">Midwest · 11</div>
-      <div class="tr b-kristine win"><span class="sd">11</span><span class="tn">Miami (OH) / SMU</span><span class="sc-d fn">89–79</span><span class="bdg c-kristine">Kristine</span></div>
-      <div class="ff-note">Miami (OH) advances</div></div>
-    <div class="ff-game"><div class="ff-lbl">South · 16</div>
-      <div class="tr b-mel win"><span class="sd">16</span><span class="tn">Prairie View / Lehigh</span><span class="sc-d fn">67–55</span><span class="bdg c-mel">Mel</span></div>
-      <div class="ff-note">Prairie View advances</div></div>
-    <div class="ff-game"><div class="ff-lbl">West · 11</div>
-      <div class="tr b-carla win"><span class="sd">11</span><span class="tn">Texas / NC State</span><span class="sc-d fn">68–66</span><span class="bdg c-carla">Carla</span></div>
-      <div class="ff-note">Texas advances</div></div>
-    <div class="ff-game"><div class="ff-lbl">Midwest · 16</div>
-      <div class="tr b-kristine win"><span class="sd">16</span><span class="tn">Howard / UMBC</span><span class="sc-d fn">86–83</span><span class="bdg c-kristine">Kristine</span></div>
-      <div class="ff-note">Howard advances</div></div>
+<details>
+  <summary>⚡ First Four — Mar 17–18 · Complete</summary>
+  <div class="ff-wrap" style="margin-top:12px">
+    <div class="ff-grid">
+      <div class="ff-game"><div class="ff-lbl">Midwest · 11</div>
+        <div class="tr b-kristine win"><span class="sd">11</span><span class="tn">Miami OH / SMU</span><span class="sc-d fn">89–79</span><span class="bdg c-kristine">Kristine</span></div>
+        <div class="ff-note">Miami OH advances</div></div>
+      <div class="ff-game"><div class="ff-lbl">South · 16</div>
+        <div class="tr b-mel win"><span class="sd">16</span><span class="tn">Prairie View / Lehigh</span><span class="sc-d fn">67–55</span><span class="bdg c-mel">Mel</span></div>
+        <div class="ff-note">Prairie View advances</div></div>
+      <div class="ff-game"><div class="ff-lbl">West · 11</div>
+        <div class="tr b-carla win"><span class="sd">11</span><span class="tn">Texas / NC State</span><span class="sc-d fn">68–66</span><span class="bdg c-carla">Carla</span></div>
+        <div class="ff-note">Texas advances</div></div>
+      <div class="ff-game"><div class="ff-lbl">Midwest · 16</div>
+        <div class="tr b-kristine win"><span class="sd">16</span><span class="tn">Howard / UMBC</span><span class="sc-d fn">86–83</span><span class="bdg c-kristine">Kristine</span></div>
+        <div class="ff-note">Howard advances</div></div>
+    </div>
   </div>
-</div>
+</details>
 
-<!-- ROUND 1 -->
-<div class="sec-hdr">🏀 Round 1 — Mar 19–20 · All 32 Games Complete</div>
-<div id="r1"></div>
+<details>
+  <summary>🏀 Round 1 — Mar 19–20 · All 32 Games Final</summary>
+  <div id="r1"></div>
+</details>
 
-<!-- ROUND 2 -->
-<div class="sec-hdr">🏀 Round 2 — Mar 21–22</div>
-<div id="r2"></div>
+<details>
+  <summary>🏀 Round 2 — Mar 21–22 · All 16 Games Final</summary>
+  <div id="r2"></div>
+</details>
 
-<!-- SWEET 16 -->
-<div class="sec-hdr">🏆 Sweet 16 — Mar 26–27</div>
-<div id="s16"></div>
+<details>
+  <summary>🏆 Sweet 16 — Mar 26–27 · All 8 Games Final</summary>
+  <div id="s16"></div>
+</details>
 
-<!-- ELITE 8 -->
-<div class="sec-hdr">🏆 Elite 8 — Mar 28–29</div>
-<div id="e8"></div>
+<details open>
+  <summary>🏆 Elite 8 — Mar 28–29</summary>
+  <div id="e8"></div>
+</details>
 
-<!-- FINAL FOUR -->
-<div class="sec-hdr">🏆 Final Four &amp; Championship — Indianapolis</div>
-<div class="finals">
-  <p class="sub">Final Four: Apr 4 · Championship: Apr 6</p>
-  <div class="sf-grid">
-    <div class="sf-box mw"><div class="sf-lbl">Midwest vs East</div>
-      <div class="slot">Midwest Champion</div><div class="vs">VS</div><div class="slot" style="border:none">East Champion</div></div>
-    <div class="sf-box ws"><div class="sf-lbl">West vs South</div>
-      <div class="slot">West Champion</div><div class="vs">VS</div><div class="slot" style="border:none">South Champion</div></div>
+<div class="sec-hdr-plain">🏆 Final Four &amp; Championship — Indianapolis</div>
+<div class="ff4-wrap">
+  <div class="ff4-grid">
+    <div class="ff4-box semi1"><div class="ff4-lbl">Semifinal 1 · Apr 4 · West vs South</div><div id="ff-semi1"></div></div>
+    <div class="ff4-box semi2"><div class="ff4-lbl">Semifinal 2 · Apr 4 · East vs Midwest</div><div id="ff-semi2"></div></div>
   </div>
-  <div class="champ-box">
-    <div class="champ-lbl">🏅 National Championship · Apr 6</div>
-    <div class="slot">Semi Winner 1</div><div class="vs">VS</div><div class="slot" style="border:none">Semi Winner 2</div>
-  </div>
+  <div class="champ-box"><div class="champ-lbl">🏅 National Championship · Apr 6</div><div id="ff-champ"></div></div>
 </div>
 
 <script>
 // ─── POOL ────────────────────────────────────────────────────────────────────
-const P = {
-  // EAST
-  duke:{n:"Duke",          s:1, r:"east",    o:"phil"},
-  conn:{n:"UConn",         s:2, r:"east",    o:"suzi"},
-  msu: {n:"Michigan St.",  s:3, r:"east",    o:"phil"},
-  ku:  {n:"Kansas",        s:4, r:"east",    o:"suzi"},
-  sju: {n:"St. John's",    s:5, r:"east",    o:"carla"},
-  lou: {n:"Louisville",    s:6, r:"east",    o:"mel"},
-  ucla:{n:"UCLA",          s:7, r:"east",    o:"kristine"},
-  osu: {n:"Ohio State",    s:8, r:"east",    o:"suzi"},
-  tcu: {n:"TCU",           s:9, r:"east",    o:"phil"},
-  ucf: {n:"UCF",           s:10,r:"east",    o:"vin"},
-  usf: {n:"S. Florida",   s:11,r:"east",    o:"vin"},
-  uni: {n:"N. Iowa",       s:12,r:"east",    o:"mel"},
-  cbu: {n:"Cal Baptist",   s:13,r:"east",    o:"mel"},
-  ndsu:{n:"N. Dakota St.", s:14,r:"east",    o:"vin"},
-  fur: {n:"Furman",        s:15,r:"east",    o:"suzi"},
-  sie: {n:"Siena",         s:16,r:"east",    o:"vin"},
-  // SOUTH
-  fla: {n:"Florida",       s:1, r:"south",   o:"mel"},
-  hou: {n:"Houston",       s:2, r:"south",   o:"dave"},
-  ill: {n:"Illinois",      s:3, r:"south",   o:"kristine"},
-  neb: {n:"Nebraska",      s:4, r:"south",   o:"dave"},
-  van: {n:"Vanderbilt",    s:5, r:"south",   o:"kristine"},
-  unc: {n:"N. Carolina",   s:6, r:"south",   o:"suzi"},
-  smc: {n:"Saint Mary's",  s:7, r:"south",   o:"phil"},
-  clem:{n:"Clemson",       s:8, r:"south",   o:"bob"},
-  iowa:{n:"Iowa",          s:9, r:"south",   o:"dave"},
-  txam:{n:"Texas A&M",     s:10,r:"south",   o:"kristine"},
-  vcu: {n:"VCU",           s:11,r:"south",   o:"dave"},
-  mcns:{n:"McNeese",       s:12,r:"south",   o:"suzi"},
-  troy:{n:"Troy",          s:13,r:"south",   o:"carla"},
-  penn:{n:"Penn",          s:14,r:"south",   o:"bob"},
-  idho:{n:"Idaho",         s:15,r:"south",   o:"dave"},
-  pv:  {n:"Prairie View/Lehigh",s:16,r:"south",o:"mel"},
-  // MIDWEST
-  mich:{n:"Michigan",      s:1, r:"midwest", o:"kristine"},
-  isu: {n:"Iowa State",    s:2, r:"midwest", o:"carla"},
-  uva: {n:"Virginia",      s:3, r:"midwest", o:"mel"},
-  ala: {n:"Alabama",       s:4, r:"midwest", o:"vin"},
-  ttu: {n:"Texas Tech",    s:5, r:"midwest", o:"dave"},
-  tenn:{n:"Tennessee",     s:6, r:"midwest", o:"bob"},
-  uk:  {n:"Kentucky",      s:7, r:"midwest", o:"vin"},
-  uga: {n:"Georgia",       s:8, r:"midwest", o:"dave"},
-  slu: {n:"Saint Louis",   s:9, r:"midwest", o:"mel"},
-  scu: {n:"Santa Clara",   s:10,r:"midwest", o:"suzi"},
-  mioh:{n:"Miami OH/SMU",  s:11,r:"midwest", o:"kristine"},
-  akr: {n:"Akron",         s:12,r:"midwest", o:"bob"},
-  hof: {n:"Hofstra",       s:13,r:"midwest", o:"kristine"},
-  wrst:{n:"Wright State",  s:14,r:"midwest", o:"suzi"},
-  tnst:{n:"Tennessee St.", s:15,r:"midwest", o:"carla"},
-  how: {n:"Howard/UMBC",   s:16,r:"midwest", o:"kristine"},
-  // WEST
-  ariz:{n:"Arizona",       s:1, r:"west",    o:"bob"},
-  pur: {n:"Purdue",        s:2, r:"west",    o:"vin"},
-  gonz:{n:"Gonzaga",       s:3, r:"west",    o:"carla"},
-  ark: {n:"Arkansas",      s:4, r:"west",    o:"bob"},
-  wis: {n:"Wisconsin",     s:5, r:"west",    o:"vin"},
-  byu: {n:"BYU",           s:6, r:"west",    o:"phil"},
-  mia: {n:"Miami (FL)",    s:7, r:"west",    o:"carla"},
-  vill:{n:"Villanova",     s:8, r:"west",    o:"mel"},
-  usu: {n:"Utah State",    s:9, r:"west",    o:"bob"},
-  miz: {n:"Missouri",      s:10,r:"west",    o:"carla"},
-  tex: {n:"Texas/NC St.",  s:11,r:"west",    o:"carla"},
-  hp:  {n:"High Point",    s:12,r:"west",    o:"phil"},
-  haw: {n:"Hawai'i",       s:13,r:"west",    o:"phil"},
-  kenn:{n:"Kennesaw St.",  s:14,r:"west",    o:"dave"},
-  quc: {n:"Queens",        s:15,r:"west",    o:"phil"},
-  liu: {n:"Long Island U.",s:16,r:"west",    o:"bob"},
+const P={
+  duke:{n:"Duke",s:1,r:"east",o:"phil"},conn:{n:"UConn",s:2,r:"east",o:"suzi"},
+  msu:{n:"Michigan St.",s:3,r:"east",o:"phil"},ku:{n:"Kansas",s:4,r:"east",o:"suzi"},
+  sju:{n:"St. John's",s:5,r:"east",o:"carla"},lou:{n:"Louisville",s:6,r:"east",o:"mel"},
+  ucla:{n:"UCLA",s:7,r:"east",o:"kristine"},osu:{n:"Ohio State",s:8,r:"east",o:"suzi"},
+  tcu:{n:"TCU",s:9,r:"east",o:"phil"},ucf:{n:"UCF",s:10,r:"east",o:"vin"},
+  usf:{n:"S. Florida",s:11,r:"east",o:"vin"},uni:{n:"N. Iowa",s:12,r:"east",o:"mel"},
+  cbu:{n:"Cal Baptist",s:13,r:"east",o:"mel"},ndsu:{n:"N. Dakota St.",s:14,r:"east",o:"vin"},
+  fur:{n:"Furman",s:15,r:"east",o:"suzi"},sie:{n:"Siena",s:16,r:"east",o:"vin"},
+  fla:{n:"Florida",s:1,r:"south",o:"mel"},hou:{n:"Houston",s:2,r:"south",o:"dave"},
+  ill:{n:"Illinois",s:3,r:"south",o:"kristine"},neb:{n:"Nebraska",s:4,r:"south",o:"dave"},
+  van:{n:"Vanderbilt",s:5,r:"south",o:"kristine"},unc:{n:"N. Carolina",s:6,r:"south",o:"suzi"},
+  smc:{n:"Saint Mary's",s:7,r:"south",o:"phil"},clem:{n:"Clemson",s:8,r:"south",o:"bob"},
+  iowa:{n:"Iowa",s:9,r:"south",o:"dave"},txam:{n:"Texas A&M",s:10,r:"south",o:"kristine"},
+  vcu:{n:"VCU",s:11,r:"south",o:"dave"},mcns:{n:"McNeese",s:12,r:"south",o:"suzi"},
+  troy:{n:"Troy",s:13,r:"south",o:"carla"},penn:{n:"Penn",s:14,r:"south",o:"bob"},
+  idho:{n:"Idaho",s:15,r:"south",o:"dave"},pv:{n:"Prairie View",s:16,r:"south",o:"mel"},
+  mich:{n:"Michigan",s:1,r:"midwest",o:"kristine"},isu:{n:"Iowa State",s:2,r:"midwest",o:"carla"},
+  uva:{n:"Virginia",s:3,r:"midwest",o:"mel"},ala:{n:"Alabama",s:4,r:"midwest",o:"vin"},
+  ttu:{n:"Texas Tech",s:5,r:"midwest",o:"dave"},tenn:{n:"Tennessee",s:6,r:"midwest",o:"bob"},
+  uk:{n:"Kentucky",s:7,r:"midwest",o:"vin"},uga:{n:"Georgia",s:8,r:"midwest",o:"dave"},
+  slu:{n:"Saint Louis",s:9,r:"midwest",o:"mel"},scu:{n:"Santa Clara",s:10,r:"midwest",o:"suzi"},
+  mioh:{n:"Miami OH",s:11,r:"midwest",o:"kristine"},akr:{n:"Akron",s:12,r:"midwest",o:"bob"},
+  hof:{n:"Hofstra",s:13,r:"midwest",o:"kristine"},wrst:{n:"Wright State",s:14,r:"midwest",o:"suzi"},
+  tnst:{n:"Tennessee St.",s:15,r:"midwest",o:"carla"},how:{n:"Howard",s:16,r:"midwest",o:"kristine"},
+  ariz:{n:"Arizona",s:1,r:"west",o:"bob"},pur:{n:"Purdue",s:2,r:"west",o:"vin"},
+  gonz:{n:"Gonzaga",s:3,r:"west",o:"carla"},ark:{n:"Arkansas",s:4,r:"west",o:"bob"},
+  wis:{n:"Wisconsin",s:5,r:"west",o:"vin"},byu:{n:"BYU",s:6,r:"west",o:"phil"},
+  mia:{n:"Miami FL",s:7,r:"west",o:"carla"},vill:{n:"Villanova",s:8,r:"west",o:"mel"},
+  usu:{n:"Utah State",s:9,r:"west",o:"bob"},miz:{n:"Missouri",s:10,r:"west",o:"carla"},
+  tex:{n:"Texas",s:11,r:"west",o:"carla"},hp:{n:"High Point",s:12,r:"west",o:"phil"},
+  haw:{n:"Hawai'i",s:13,r:"west",o:"phil"},kenn:{n:"Kennesaw St.",s:14,r:"west",o:"dave"},
+  quc:{n:"Queens",s:15,r:"west",o:"phil"},liu:{n:"Long Island U.",s:16,r:"west",o:"bob"},
 };
-
-const OW = {
-  phil:    {l:"Phil",     c:"#a78bfa"},
-  suzi:    {l:"Suzi",     c:"#34d399"},
-  mel:     {l:"Mel",      c:"#f472b6"},
-  bob:     {l:"Bob",      c:"#fb923c"},
-  dave:    {l:"Dave",     c:"#60a5fa"},
-  kristine:{l:"Kristine", c:"#f87171"},
-  vin:     {l:"Vin",      c:"#facc15"},
-  carla:   {l:"Carla",    c:"#4ade80"},
+const OW={
+  phil:{l:"Phil",c:"#a78bfa"},suzi:{l:"Suzi",c:"#34d399"},mel:{l:"Mel",c:"#f472b6"},
+  bob:{l:"Bob",c:"#fb923c"},dave:{l:"Dave",c:"#60a5fa"},kristine:{l:"Kristine",c:"#f87171"},
+  vin:{l:"Vin",c:"#facc15"},carla:{l:"Carla",c:"#4ade80"},
 };
-
-const OT = {
-  phil:    ["duke","msu","tcu","smc","byu","hp","haw","quc"],
-  suzi:    ["conn","ku","osu","fur","unc","mcns","scu","wrst"],
-  mel:     ["lou","uni","cbu","fla","pv","uva","slu","vill"],
-  bob:     ["clem","penn","ariz","ark","usu","liu","tenn","akr"],
-  dave:    ["hou","neb","iowa","vcu","idho","uga","ttu","kenn"],
+const OT={
+  phil:["duke","msu","tcu","smc","byu","hp","haw","quc"],
+  suzi:["conn","ku","osu","fur","unc","mcns","scu","wrst"],
+  mel:["lou","uni","cbu","fla","pv","uva","slu","vill"],
+  bob:["clem","penn","ariz","ark","usu","liu","tenn","akr"],
+  dave:["hou","neb","iowa","vcu","idho","uga","ttu","kenn"],
   kristine:["mich","how","ill","van","txam","ucla","hof","mioh"],
-  vin:     ["sie","ucf","usf","ndsu","ala","uk","pur","wis"],
-  carla:   ["sju","troy","isu","tnst","gonz","mia","miz","tex"],
+  vin:["sie","ucf","usf","ndsu","ala","uk","pur","wis"],
+  carla:["sju","troy","isu","tnst","gonz","mia","miz","tex"],
 };
 
-// ─── ROUND 1 MATCHUPS ────────────────────────────────────────────────────────
-const R1 = {
-  east:   [["duke","sie"],["osu","tcu"],["sju","uni"],["ku","cbu"],["lou","usf"],["msu","ndsu"],["ucla","ucf"],["conn","fur"]],
-  south:  [["fla","pv"],["clem","iowa"],["van","mcns"],["neb","troy"],["unc","vcu"],["ill","penn"],["smc","txam"],["hou","idho"]],
+// ─── BRACKET STRUCTURE ───────────────────────────────────────────────────────
+const R1={
+  east:[["duke","sie"],["osu","tcu"],["sju","uni"],["ku","cbu"],["lou","usf"],["msu","ndsu"],["ucla","ucf"],["conn","fur"]],
+  south:[["fla","pv"],["clem","iowa"],["van","mcns"],["neb","troy"],["unc","vcu"],["ill","penn"],["smc","txam"],["hou","idho"]],
   midwest:[["mich","how"],["uga","slu"],["ttu","akr"],["ala","hof"],["tenn","mioh"],["uva","wrst"],["uk","scu"],["isu","tnst"]],
-  west:   [["ariz","liu"],["vill","usu"],["wis","hp"],["ark","haw"],["byu","tex"],["gonz","kenn"],["mia","miz"],["pur","quc"]]
+  west:[["ariz","liu"],["vill","usu"],["wis","hp"],["ark","haw"],["byu","tex"],["gonz","kenn"],["mia","miz"],["pur","quc"]]
 };
-
-// ─── ROUND 2 MATCHUPS ────────────────────────────────────────────────────────
-const R2 = {
-  east:   [["duke","tcu"],["msu","lou"],["sju","ku"],["ucla","conn"]],
-  south:  [["fla","iowa"],["van","neb"],["vcu","ill"],["txam","hou"]],
+const R2={
+  east:[["duke","tcu"],["msu","lou"],["sju","ku"],["ucla","conn"]],
+  south:[["fla","iowa"],["van","neb"],["vcu","ill"],["txam","hou"]],
   midwest:[["mich","slu"],["ttu","ala"],["tenn","uva"],["uk","isu"]],
-  west:   [["ariz","usu"],["hp","ark"],["tex","gonz"],["mia","pur"]]
+  west:[["ariz","usu"],["hp","ark"],["tex","gonz"],["mia","pur"]]
+};
+// Sweet 16 actual matchups (not derived — hardcoded from official bracket)
+const S16={
+  west:[["pur","tex"],["ariz","ark"]],
+  south:[["iowa","neb"],["ill","hou"]],
+  east:[["duke","sju"],["conn","msu"]],
+  midwest:[["mich","ala"],["tenn","isu"]],
+};
+// Elite 8 actual matchups (S16 winners per region)
+const E8={
+  west:["pur","ariz"],    // Purdue vs Arizona — Sat Mar 28
+  south:["iowa","ill"],   // Iowa vs Illinois — Sat Mar 28
+  east:["duke","conn"],   // Duke vs UConn — Sun Mar 29
+  midwest:["mich","tenn"],// Michigan vs Tennessee — Sun Mar 29
+};
+// Final Four: West winner vs South winner | East winner vs Midwest winner
+const FF={
+  semi1:["west","south"],
+  semi2:["east","midwest"],
 };
 
-// ─── RESULTS STORES ──────────────────────────────────────────────────────────
-// R1res[key] = {ws, ls, w, l}  — Round 1 confirmed finals only
-// R2res[key] = {ws, ls, w, l, status}  — Round 2: confirmed + ESPN live
-const R1res = {};
-const R2res = {};
+// ─── RESULT STORES (one per round, never mixed) ───────────────────────────────
+const RES={r1:{},r2:{},s16:{},e8:{},ff:{},champ:{}};
 
-function r1(w, l, ws, ls){
-  R1res[w] = {ws, ls, w, l, status:'post'}; 
-  R1res[l] = {ws:ls, ls:ws, w, l, status:'post'};
-}
-function r2(w, l, ws, ls){
-  R2res[w] = {ws, ls, w, l, status:'post'}; R2res[l] = {ws:ls, ls:ws, w, l, status:'post'};
+function setFinal(store,w,l,ws,ls){
+  store[w]={ws,ls,w,l,status:'post'};
+  store[l]={ws:ls,ls:ws,w,l,status:'post'};
 }
 
-// ─── ALL ROUND 1 FINALS ──────────────────────────────────────────────────────
-r1('duke','sie',71,65); r1('tcu','osu',66,64);
-r1('sju','uni',77,53);  r1('ku','cbu',68,60);
-r1('lou','usf',83,79);  r1('msu','ndsu',92,67);
-r1('ucla','ucf',75,71); r1('conn','fur',82,71);
-r1('fla','pv',114,55);  r1('iowa','clem',67,61);
-r1('van','mcns',78,68); r1('neb','troy',76,47);
-r1('vcu','unc',82,78);  r1('ill','penn',105,70);
-r1('txam','smc',63,50); r1('hou','idho',78,47);
-r1('mich','how',101,80);r1('slu','uga',102,77);
-r1('ttu','akr',91,71);  r1('ala','hof',90,70);
-r1('tenn','mioh',78,56);r1('uva','wrst',82,73);
-r1('uk','scu',89,84);   r1('isu','tnst',108,74);
-r1('ariz','liu',92,58); r1('usu','vill',86,76);
-r1('hp','wis',83,82);   r1('ark','haw',97,78);
-r1('tex','byu',79,71);  r1('gonz','kenn',73,64);
-r1('mia','miz',80,66);  r1('pur','quc',104,71);
+// ─── ROUND 1 FINALS ──────────────────────────────────────────────────────────
+const F=RES.r1;
+setFinal(F,'duke','sie',71,65);setFinal(F,'tcu','osu',66,64);
+setFinal(F,'sju','uni',77,53);setFinal(F,'ku','cbu',68,60);
+setFinal(F,'lou','usf',83,79);setFinal(F,'msu','ndsu',92,67);
+setFinal(F,'ucla','ucf',75,71);setFinal(F,'conn','fur',82,71);
+setFinal(F,'fla','pv',114,55);setFinal(F,'iowa','clem',67,61);
+setFinal(F,'van','mcns',78,68);setFinal(F,'neb','troy',76,47);
+setFinal(F,'vcu','unc',82,78);setFinal(F,'ill','penn',105,70);
+setFinal(F,'txam','smc',63,50);setFinal(F,'hou','idho',78,47);
+setFinal(F,'mich','how',101,80);setFinal(F,'slu','uga',102,77);
+setFinal(F,'ttu','akr',91,71);setFinal(F,'ala','hof',90,70);
+setFinal(F,'tenn','mioh',78,56);setFinal(F,'uva','wrst',82,73);
+setFinal(F,'uk','scu',89,84);setFinal(F,'isu','tnst',108,74);
+setFinal(F,'ariz','liu',92,58);setFinal(F,'usu','vill',86,76);
+setFinal(F,'hp','wis',83,82);setFinal(F,'ark','haw',97,78);
+setFinal(F,'tex','byu',79,71);setFinal(F,'gonz','kenn',73,64);
+setFinal(F,'mia','miz',80,66);setFinal(F,'pur','quc',104,71);
 
-// ─── ALL ROUND 2 FINALS — complete ───────────────────────────────────────────
-r2('mich','slu',95,72);   // Michigan def. Saint Louis
-r2('msu','lou',77,69);    // Michigan State def. Louisville
-r2('duke','tcu',81,58);   // Duke def. TCU
-r2('hou','txam',88,57);   // Houston def. Texas A&M
-r2('tex','gonz',74,68);   // Texas def. Gonzaga
-r2('ill','vcu',76,55);    // Illinois def. VCU
-r2('neb','van',74,72);    // Nebraska def. Vanderbilt
-r2('ark','hp',94,88);     // Arkansas def. High Point
-r2('pur','mia',79,69);    // Purdue def. Miami (FL)
-r2('isu','uk',82,63);     // Iowa State def. Kentucky
-r2('sju','ku',67,65);     // St. John's def. Kansas
-r2('tenn','uva',79,72);   // Tennessee def. Virginia
-r2('iowa','fla',73,72);   // Iowa def. Florida
-r2('ariz','usu',78,66);   // Arizona def. Utah State
-r2('conn','ucla',73,57);  // UConn def. UCLA
-r2('ala','ttu',90,65);    // Alabama def. Texas Tech
+// ─── ROUND 2 FINALS ──────────────────────────────────────────────────────────
+const G=RES.r2;
+setFinal(G,'mich','slu',95,72);setFinal(G,'msu','lou',77,69);
+setFinal(G,'duke','tcu',81,58);setFinal(G,'hou','txam',88,57);
+setFinal(G,'tex','gonz',74,68);setFinal(G,'ill','vcu',76,55);
+setFinal(G,'neb','van',74,72);setFinal(G,'ark','hp',94,88);
+setFinal(G,'pur','mia',79,69);setFinal(G,'isu','uk',82,63);
+setFinal(G,'sju','ku',67,65);setFinal(G,'tenn','uva',79,72);
+setFinal(G,'iowa','fla',73,72);setFinal(G,'ariz','usu',78,66);
+setFinal(G,'conn','ucla',73,57);setFinal(G,'ala','ttu',90,65);
 
-// ─── ESPN ABBREVIATION → POOL KEY ────────────────────────────────────────────
-const AMAP = {
-  "DUKE":"duke","CONN":"conn","MSU":"msu","KU":"ku","SJU":"sju","LOU":"lou",
-  "UCLA":"ucla","OSU":"osu","TCU":"tcu","UCF":"ucf","USF":"usf","UNI":"uni",
-  "CBU":"cbu","NDSU":"ndsu","FUR":"fur","SIE":"sie",
-  "FLA":"fla","HOU":"hou","ILL":"ill","NEB":"neb","VAN":"van","UNC":"unc",
-  "SMC":"smc","CLEM":"clem","IOWA":"iowa","TXAM":"txam","VCU":"vcu","MCNS":"mcns",
-  "TROY":"troy","PENN":"penn","IDHO":"idho","PV":"pv",
-  "MICH":"mich","ISU":"isu","UVA":"uva","ALA":"ala","TTU":"ttu","TENN":"tenn",
-  "UK":"uk","UGA":"uga","SLU":"slu","SCU":"scu","M-OH":"mioh","MIOH":"mioh",
-  "AKR":"akr","HOF":"hof","WRST":"wrst","TNST":"tnst","HOW":"how",
-  "ARIZ":"ariz","PUR":"pur","GONZ":"gonz","ARK":"ark","WIS":"wis","BYU":"byu",
-  "MIA":"mia","VILL":"vill","USU":"usu","MIZ":"miz","TEX":"tex","HP":"hp",
-  "HAW":"haw","KENN":"kenn","QUC":"quc","LIU":"liu",
+// ─── SWEET 16 FINALS ─────────────────────────────────────────────────────────
+const H=RES.s16;
+setFinal(H,'pur','tex',79,77);   // West
+setFinal(H,'ariz','ark',109,88); // West
+setFinal(H,'iowa','neb',77,71);  // South
+setFinal(H,'ill','hou',65,55);   // South
+setFinal(H,'duke','sju',80,75);  // East
+setFinal(H,'conn','msu',67,63);  // East
+setFinal(H,'mich','ala',90,77);  // Midwest
+setFinal(H,'tenn','isu',76,62);  // Midwest
+
+// ─── ESPN AMAP ────────────────────────────────────────────────────────────────
+const AMAP={
+  DUKE:"duke",CONN:"conn",MSU:"msu",KU:"ku",SJU:"sju",LOU:"lou",UCLA:"ucla",
+  OSU:"osu",TCU:"tcu",UCF:"ucf",USF:"usf",UNI:"uni",CBU:"cbu",NDSU:"ndsu",
+  FUR:"fur",SIE:"sie",FLA:"fla",HOU:"hou",ILL:"ill",NEB:"neb",VAN:"van",
+  UNC:"unc",SMC:"smc",CLEM:"clem",IOWA:"iowa",TXAM:"txam",VCU:"vcu",
+  MCNS:"mcns",TROY:"troy",PENN:"penn",IDHO:"idho",PV:"pv",MICH:"mich",
+  ISU:"isu",UVA:"uva",ALA:"ala",TTU:"ttu",TENN:"tenn",UK:"uk",UGA:"uga",
+  SLU:"slu",SCU:"scu",MIOH:"mioh",AKR:"akr",HOF:"hof",WRST:"wrst",
+  TNST:"tnst",HOW:"how",ARIZ:"ariz",PUR:"pur",GONZ:"gonz",ARK:"ark",
+  WIS:"wis",BYU:"byu",MIA:"mia",VILL:"vill",USU:"usu",MIZ:"miz",
+  TEX:"tex",HP:"hp",HAW:"haw",KENN:"kenn",QUC:"quc",LIU:"liu",
 };
+function akey(abbr){return AMAP[abbr?.toUpperCase()]||null;}
 
-function espnKey(abbr){ return AMAP[abbr?.toUpperCase()] || null; }
+// ─── RENDERING ────────────────────────────────────────────────────────────────
+function bdg(o){return `<span class="bdg c-${o}">${OW[o].l}</span>`;}
 
-// ─── RENDERING HELPERS ───────────────────────────────────────────────────────
-function bdg(o){ return `<span class="bdg c-${o}">${OW[o].l}</span>`; }
-
-function teamRow(key, isWin, isLose, score, oppScore, isLive){
-  const t = P[key]; if(!t) return '';
-  let cls = `tr b-${t.o}`;
-  let sc = '';
-  if(isWin)  { cls+=' win';  sc=`<span class="sc-d fn">${score}–${oppScore}</span>`; }
-  if(isLose) { cls+=' lose'; sc=`<span class="sc-d fn">${score}–${oppScore}</span>`; }
-  if(isLive) { cls+=' live'; sc=`<span class="sc-d lv">${score}–${oppScore}</span>`; }
+function trow(key,win,lose,live,score,opp){
+  const t=P[key];if(!t)return'';
+  let cls=`tr b-${t.o}`;
+  let sc='';
+  if(win){cls+=' win';sc=`<span class="sc-d fn">${score}–${opp}</span>`;}
+  else if(lose){cls+=' lose';sc=`<span class="sc-d fn">${score}–${opp}</span>`;}
+  else if(live){cls+=' live';sc=`<span class="sc-d lv">${score}–${opp}</span>`;}
   return `<div class="${cls}"><span class="sd">${t.s}</span><span class="tn">${t.n}</span>${sc}${bdg(t.o)}</div>`;
 }
 
-// Draw one matchup using a specific results store
-function matchup(a, b, store){
-  const ga = store[a], gb = store[b];
-  let aWin=false,aLose=false,bWin=false,bLose=false,aLive=false,bLive=false;
+function tbd(){return `<div class="tbd">TBD</div>`;}
+
+function gameBlock(a,b,store){
+  const ga=store[a],gb=store[b];
+  const g=ga||gb;
+  let aW=false,aL=false,bW=false,bL=false,aLv=false,bLv=false;
   let aS='',aO='',bS='',bO='';
-
-  const g = ga || gb;
-  if(!g){
-    // No result yet — show teams with no score
-    return `<div class="matchup"><div class="mbr"></div><div class="mteams">
-      ${teamRow(a,false,false,'','',false)}
-      ${teamRow(b,false,false,'','',false)}
-    </div></div>`;
+  if(g){
+    if(g.status==='post'){
+      aS=ga?ga.ws:gb.ls; aO=ga?ga.ls:gb.ws;
+      bS=gb?gb.ws:ga.ls; bO=gb?gb.ls:ga.ws;
+      if(g.w===a){aW=true;bL=true;}else{bW=true;aL=true;}
+    }else if(g.status==='inprogress'){
+      aLv=true;bLv=true;
+      aS=ga?ga.ws:(gb?gb.ls:''); aO=ga?ga.ls:(gb?gb.ws:'');
+      bS=gb?gb.ws:(ga?ga.ls:''); bO=gb?gb.ls:(ga?ga.ws:'');
+    }
   }
-
-  const isPost = g.status==='post' || g.status==='closed';
-  const isLive = g.status==='inprogress' || g.status==='in';
-
-  if(isPost){
-    const winner = g.w;
-    aS = ga ? ga.ws : gb.ls; aO = ga ? ga.ls : gb.ws;
-    bS = gb ? gb.ws : ga.ls; bO = gb ? gb.ls : ga.ws;
-    if(winner===a){ aWin=true; bLose=true; }
-    else          { bWin=true; aLose=true; }
-  } else if(isLive){
-    aS = ga ? ga.ws : (gb ? gb.ls : ''); aO = ga ? ga.ls : (gb ? gb.ws : '');
-    bS = gb ? gb.ws : (ga ? ga.ls : ''); bO = gb ? gb.ls : (ga ? ga.ws : '');
-    aLive=true; bLive=true;
-  }
-
-  return `<div class="matchup"><div class="mbr"></div><div class="mteams">
-    ${teamRow(a,aWin,aLose,aS,aO,aLive)}
-    ${teamRow(b,bWin,bLose,bS,bO,bLive)}
-  </div></div>`;
+  return trow(a,aW,aL,aLv,aS,aO)+trow(b,bW,bL,bLv,bS,bO);
 }
 
-function regionHTML(id, matchups, store){
-  const labels = {east:'East',south:'South',midwest:'Midwest',west:'West'};
-  return `<div class="region ${id}"><div class="reg-title">🏀 ${labels[id]}</div>
-    <div class="matchups">${matchups.map(([a,b])=>matchup(a,b,store)).join('')}</div></div>`;
+function matchup(a,b,store){
+  return `<div class="matchup"><div class="mbr"></div><div class="mteams">${gameBlock(a,b,store)}</div></div>`;
 }
 
-// ─── SWEET 16 MATCHUPS (actual bracket pairings, not derived from R2) ─────────
-// West:    Purdue vs Texas | Arizona vs Arkansas
-// South:   Nebraska vs Iowa | Houston vs Illinois
-// East:    Duke vs St. John's | UConn vs Michigan State   (Fri Mar 27)
-// Midwest: Michigan vs Alabama | Iowa State vs Tennessee  (Fri Mar 27)
-const S16 = {
-  west:   [["pur","tex"],["ariz","ark"]],
-  south:  [["neb","iowa"],["hou","ill"]],
-  east:   [["duke","sju"],["conn","msu"]],
-  midwest:[["mich","ala"],["isu","tenn"]],
-};
-
-// S16 results store — hardcode finals, ESPN fills live games
-const S16res = {};
-function s16f(w, l, ws, ls){
-  S16res[w] = {ws, ls, w, l, status:'post'};
-  S16res[l] = {ws:ls, ls:ws, w, l, status:'post'};
+function regionHTML(id,pairs,store){
+  const L={east:'East',south:'South',midwest:'Midwest',west:'West'};
+  return `<div class="region ${id}"><div class="reg-title">🏀 ${L[id]}</div>
+    <div class="matchups">${pairs.map(([a,b])=>matchup(a,b,store)).join('')}</div></div>`;
 }
 
-// ─── CONFIRMED SWEET 16 RESULTS ──────────────────────────────────────────────
-s16f('iowa','neb',73,66);  // Iowa def. Nebraska
-s16f('pur','tex',79,77);   // Purdue def. Texas
-// Arizona vs Arkansas — scheduled tonight
-// Houston vs Illinois — scheduled tonight
-// Friday games not yet played
-
-// ─── ADVANCE SLOT (for S16 / E8) ─────────────────────────────────────────────
-function r2win(a, b){
-  const ga = R2res[a], gb = R2res[b];
-  if(ga && ga.status==='post' && ga.w===a && ga.l===b) return a;
-  if(ga && ga.status==='post' && ga.w===b && ga.l===a) return b;
-  if(gb && gb.status==='post' && gb.w===b && gb.l===a) return b;
-  if(gb && gb.status==='post' && gb.w===a && gb.l===b) return a;
+// Winner of a game from a specific store (only if these two teams played each other)
+function storeWinner(store,a,b){
+  const ga=store[a],gb=store[b];
+  if(ga&&ga.status==='post'&&ga.w===a&&ga.l===b)return a;
+  if(ga&&ga.status==='post'&&ga.w===b&&ga.l===a)return b;
+  if(gb&&gb.status==='post'&&gb.w===b&&gb.l===a)return b;
+  if(gb&&gb.status==='post'&&gb.w===a&&gb.l===b)return a;
   return null;
 }
 
-function s16win(a, b){
-  if(!a||!b) return null;
-  const ga = S16res[a], gb = S16res[b];
-  if(ga && ga.status==='post' && ga.w===a && ga.l===b) return a;
-  if(ga && ga.status==='post' && ga.w===b && ga.l===a) return b;
-  if(gb && gb.status==='post' && gb.w===b && gb.l===a) return b;
-  if(gb && gb.status==='post' && gb.w===a && gb.l===b) return a;
-  return null;
-}
-
-function advSlot(key){
-  if(!key) return `<div class="adv-slot tbd"><span class="adv-sd">?</span><span class="adv-nm" style="color:var(--muted)">TBD</span></div>`;
-  const t = P[key];
-  return `<div class="adv-slot set"><span class="adv-sd">${t.s}</span><span class="adv-nm">${t.n}</span><span class="bdg c-${t.o}" style="margin-left:auto">${OW[t.o].l}</span></div>`;
-}
-
-// ─── BUILD SECTIONS ───────────────────────────────────────────────────────────
+// ─── BUILD FUNCTIONS ──────────────────────────────────────────────────────────
 function buildR1(){
-  document.getElementById('r1').innerHTML = `<div class="regions">
-    ${regionHTML('east',   R1.east,   R1res)}
-    ${regionHTML('south',  R1.south,  R1res)}
-    ${regionHTML('midwest',R1.midwest,R1res)}
-    ${regionHTML('west',   R1.west,   R1res)}
-  </div>`;
+  document.getElementById('r1').innerHTML=`<div class="regions">
+    ${regionHTML('east',R1.east,RES.r1)}${regionHTML('south',R1.south,RES.r1)}
+    ${regionHTML('midwest',R1.midwest,RES.r1)}${regionHTML('west',R1.west,RES.r1)}</div>`;
 }
 
 function buildR2(){
-  document.getElementById('r2').innerHTML = `<div class="regions">
-    ${regionHTML('east',   R2.east,   R2res)}
-    ${regionHTML('south',  R2.south,  R2res)}
-    ${regionHTML('midwest',R2.midwest,R2res)}
-    ${regionHTML('west',   R2.west,   R2res)}
-  </div>`;
+  document.getElementById('r2').innerHTML=`<div class="regions">
+    ${regionHTML('east',R2.east,RES.r2)}${regionHTML('south',R2.south,RES.r2)}
+    ${regionHTML('midwest',R2.midwest,RES.r2)}${regionHTML('west',R2.west,RES.r2)}</div>`;
 }
 
 function buildS16(){
-  const labels = {east:'East',south:'South',midwest:'Midwest',west:'West'};
-  let html = '<div class="adv-grid">';
+  const L={east:'East',south:'South',midwest:'Midwest',west:'West'};
+  let html='<div class="adv-grid">';
   ['west','south','east','midwest'].forEach(id=>{
-    html+=`<div class="adv-region ${id}"><div class="adv-title">🏀 ${labels[id]}</div>`;
+    html+=`<div class="adv-region ${id}"><div class="adv-title">🏀 ${L[id]}</div>`;
     S16[id].forEach(([a,b],i)=>{
-      if(i>0) html+='<div class="adv-sep"></div>';
-      const ga = S16res[a], gb = S16res[b];
-      const g = ga || gb;
-      let aWin=false,aLose=false,bWin=false,bLose=false,aLive=false,bLive=false;
-      let aS='',aO='',bS='',bO='';
-      if(g && g.status==='post'){
-        aS=ga?ga.ws:gb.ls; aO=ga?ga.ls:gb.ws;
-        bS=gb?gb.ws:ga.ls; bO=gb?gb.ls:ga.ws;
-        if(g.w===a){aWin=true;bLose=true;}else{bWin=true;aLose=true;}
-      } else if(g && g.status==='inprogress'){
-        aLive=true; bLive=true;
-        aS=ga?ga.ws:(gb?gb.ls:''); aO=ga?ga.ls:(gb?gb.ws:'');
-        bS=gb?gb.ws:(ga?ga.ls:''); bO=gb?gb.ls:(ga?ga.ws:'');
-      }
-      // Always show both teams — game just hasn't been played yet if no result
-      html+=teamRow(a,aWin,aLose,aS,aO,aLive);
-      html+='<div class="adv-vs">vs</div>';
-      html+=teamRow(b,bWin,bLose,bS,bO,bLive);
+      if(i>0)html+='<div class="adv-sep"></div>';
+      html+=gameBlock(a,b,RES.s16);
     });
     html+='</div>';
   });
-  document.getElementById('s16').innerHTML = html+'</div>';
+  document.getElementById('s16').innerHTML=html+'</div>';
 }
 
 function buildE8(){
-  const labels = {east:'East',south:'South',midwest:'Midwest',west:'West'};
-  const dates  = {east:'Mar 28',south:'Mar 29',midwest:'Mar 29',west:'Mar 28'};
-  let html = '<div class="adv-grid">';
+  const L={east:'East',south:'South',midwest:'Midwest',west:'West'};
+  const D={west:'Sat Mar 28',south:'Sat Mar 28',east:'Sun Mar 29',midwest:'Sun Mar 29'};
+  let html='<div class="adv-grid">';
   ['west','south','east','midwest'].forEach(id=>{
-    const [[a,b],[c,d]] = S16[id];
-    const top = s16win(a,b), bot = s16win(c,d);
+    const [a,b]=E8[id];
     html+=`<div class="adv-region ${id}">
-      <div class="adv-title">🏀 ${labels[id]} <span style="font-size:0.7rem;color:var(--muted);font-weight:400">${dates[id]}</span></div>`;
-    if(top && bot){
-      // Both S16 winners known — show the E8 matchup (may have a result too)
-      const ga = S16res[top]?.status==='post' && S16res[top]?.l===bot ? null : null; // E8 not in S16res
-      html += teamRow(top,false,false,'','',false);
-      html += '<div class="adv-vs">vs</div>';
-      html += teamRow(bot,false,false,'','',false);
-    } else {
-      html += advSlot(top) + '<div class="adv-vs">vs</div>' + advSlot(bot);
-    }
+      <div class="adv-title">🏀 ${L[id]} <span style="font-size:.7rem;color:var(--muted);font-weight:400">${D[id]}</span></div>`;
+    html+=gameBlock(a,b,RES.e8);
     html+='</div>';
   });
-  document.getElementById('e8').innerHTML = html+'</div>';
+  document.getElementById('e8').innerHTML=html+'</div>';
+}
+
+function buildFF(){
+  // Semi 1: West winner vs South winner
+  const w1=storeWinner(RES.e8,...E8.west);
+  const w2=storeWinner(RES.e8,...E8.south);
+  // Semi 2: East winner vs Midwest winner
+  const w3=storeWinner(RES.e8,...E8.east);
+  const w4=storeWinner(RES.e8,...E8.midwest);
+
+  function semiBlock(a,b,ffStore){
+    if(a&&b) return gameBlock(a,b,ffStore);
+    if(a) return trow(a,false,false,false,'','')+tbd();
+    if(b) return tbd()+trow(b,false,false,false,'','');
+    return tbd()+tbd();
+  }
+
+  document.getElementById('ff-semi1').innerHTML=semiBlock(w1,w2,RES.ff);
+  document.getElementById('ff-semi2').innerHTML=semiBlock(w3,w4,RES.ff);
+
+  // Championship
+  const c1=w1&&w2?storeWinner(RES.ff,w1,w2):null;
+  const c2=w3&&w4?storeWinner(RES.ff,w3,w4):null;
+  if(c1&&c2){
+    document.getElementById('ff-champ').innerHTML=gameBlock(c1,c2,RES.champ);
+  }else if(c1){
+    document.getElementById('ff-champ').innerHTML=trow(c1,false,false,false,'','')+tbd();
+  }else if(c2){
+    document.getElementById('ff-champ').innerHTML=tbd()+trow(c2,false,false,false,'','');
+  }else{
+    document.getElementById('ff-champ').innerHTML=tbd()+tbd();
+  }
 }
 
 function buildScoreboard(){
-  const elim = new Set();
-  Object.values(R1res).forEach(g=>{ if(g.l) elim.add(g.l); });
-  Object.values(R2res).forEach(g=>{ if(g.status==='post' && g.l) elim.add(g.l); });
-  Object.values(S16res).forEach(g=>{ if(g.status==='post' && g.l) elim.add(g.l); });
-  document.getElementById('scoreboard').innerHTML = Object.entries(OW).map(([k,o])=>{
-    const alive = OT[k].filter(t=>!elim.has(t)).length;
+  const elim=new Set();
+  [RES.r1,RES.r2,RES.s16,RES.e8,RES.ff,RES.champ].forEach(store=>{
+    Object.values(store).forEach(g=>{if(g.status==='post'&&g.l)elim.add(g.l);});
+  });
+  document.getElementById('scoreboard').innerHTML=Object.entries(OW).map(([k,o])=>{
+    const alive=OT[k].filter(t=>!elim.has(t)).length;
     return `<div class="sc"><div class="sc-name" style="color:${o.c}">${o.l}</div>
       <div class="sc-num" style="color:${o.c}">${alive}</div>
       <div class="sc-lbl">Teams Alive</div></div>`;
@@ -553,98 +479,93 @@ function buildScoreboard(){
 }
 
 // ─── ESPN LIVE FETCH ──────────────────────────────────────────────────────────
-async function fetchESPN(date){
-  const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?groups=50&limit=100&dates=${date}`;
-  const r = await fetch(url);
-  if(!r.ok) throw new Error(r.status);
-  return r.json();
-}
-
-// All S16 matchup pairs flattened for quick lookup
-const S16_PAIRS = new Set(
-  Object.values(S16).flat().map(([a,b])=>[a,b].sort().join('|'))
-);
-
-function isS16matchup(a, b){ return S16_PAIRS.has([a,b].sort().join('|')); }
-function isR2matchup(a, b){
-  return Object.values(R2).flat().some(([x,y])=>(x===a&&y===b)||(x===b&&y===a));
-}
+// Build lookup sets for each round's matchups
+function pairKey(a,b){return [a,b].sort().join('|');}
+const S16pairs=new Set(Object.values(S16).flat().map(([a,b])=>pairKey(a,b)));
+const E8pairs=new Set(Object.values(E8).map(([a,b])=>pairKey(a,b)));
+// FF pairs determined dynamically after E8
+function isS16(a,b){return S16pairs.has(pairKey(a,b));}
+function isE8(a,b){return E8pairs.has(pairKey(a,b));}
 
 function processESPN(data){
-  if(!data.events) return;
+  if(!data.events)return;
   data.events.forEach(ev=>{
-    const comp = ev.competitions?.[0]; if(!comp) return;
-    const state = comp.status?.type?.state || comp.status?.type?.name || '';
-    let st = 'pre';
-    if(state==='in' || state.includes('PROGRESS')) st='inprogress';
-    else if(state==='post' || state.includes('FINAL') || state==='closed') st='post';
-    if(st==='pre') return;
+    const comp=ev.competitions?.[0];if(!comp)return;
+    const state=comp.status?.type?.state||'';
+    const name=comp.status?.type?.name||'';
+    let st='pre';
+    if(state==='in'||name.includes('PROGRESS'))st='inprogress';
+    else if(state==='post'||name.includes('FINAL')||state==='closed')st='post';
+    if(st==='pre')return;
+    const cs=comp.competitors||[];if(cs.length!==2)return;
+    const kA=akey(cs[0].team?.abbreviation);
+    const kB=akey(cs[1].team?.abbreviation);
+    if(!kA||!kB||!P[kA]||!P[kB])return;
+    const sA=parseInt(cs[0].score||0);
+    const sB=parseInt(cs[1].score||0);
 
-    const comps = comp.competitors || [];
-    if(comps.length !== 2) return;
-    const keyA = espnKey(comps[0].team?.abbreviation);
-    const keyB = espnKey(comps[1].team?.abbreviation);
-    if(!keyA || !keyB || !P[keyA] || !P[keyB]) return;
-
-    const sA = parseInt(comps[0].score||0);
-    const sB = parseInt(comps[1].score||0);
-
-    // Determine which store to write to
-    const s16match = isS16matchup(keyA, keyB);
-    const r2match  = isR2matchup(keyA, keyB);
-    if(!s16match && !r2match) return; // not a pool game
-
-    const store = s16match ? S16res : R2res;
+    // Determine which store
+    let store=null;
+    if(isS16(kA,kB))store=RES.s16;
+    else if(isE8(kA,kB))store=RES.e8;
+    else{
+      // Could be FF or Champ — check if both teams are known E8 winners
+      const e8winners=new Set(Object.values(E8).map(([a,b])=>storeWinner(RES.e8,a,b)).filter(Boolean));
+      if(e8winners.has(kA)&&e8winners.has(kB)){
+        // Determine if it's semi1, semi2, or champ
+        const w1=storeWinner(RES.e8,...E8.west),w2=storeWinner(RES.e8,...E8.south);
+        const w3=storeWinner(RES.e8,...E8.east),w4=storeWinner(RES.e8,...E8.midwest);
+        const semi1=[w1,w2].filter(Boolean);
+        const semi2=[w3,w4].filter(Boolean);
+        if(semi1.includes(kA)&&semi1.includes(kB))store=RES.ff;
+        else if(semi2.includes(kA)&&semi2.includes(kB))store=RES.ff;
+        else store=RES.champ;
+      }
+    }
+    if(!store)return;
 
     // Don't overwrite confirmed finals
-    if(store[keyA] && store[keyA].status==='post' && store[keyA].l===keyB) return;
-    if(store[keyB] && store[keyB].status==='post' && store[keyB].l===keyA) return;
+    if(store[kA]&&store[kA].status==='post'&&store[kA].l===kB)return;
+    if(store[kB]&&store[kB].status==='post'&&store[kB].l===kA)return;
 
     if(st==='post'){
-      const w = comps[0].winner ? keyA : keyB;
-      const l = w===keyA ? keyB : keyA;
-      const ws = w===keyA ? sA : sB;
-      const ls = w===keyA ? sB : sA;
-      store[w] = {ws, ls, w, l, status:'post'};
-      store[l] = {ws:ls, ls:ws, w, l, status:'post'};
-    } else {
-      store[keyA] = {ws:sA, ls:sB, w:null, l:null, status:'inprogress'};
-      store[keyB] = {ws:sB, ls:sA, w:null, l:null, status:'inprogress'};
+      const w=cs[0].winner?kA:kB;
+      const l=w===kA?kB:kA;
+      const ws=w===kA?sA:sB;
+      const ls=w===kA?sB:sA;
+      store[w]={ws,ls,w,l,status:'post'};
+      store[l]={ws:ls,ls:ws,w,l,status:'post'};
+    }else{
+      store[kA]={ws:sA,ls:sB,w:null,l:null,status:'inprogress'};
+      store[kB]={ws:sB,ls:sA,w:null,l:null,status:'inprogress'};
     }
   });
 }
 
 async function load(){
-  document.getElementById('status-bar').innerHTML = '⏳ Fetching live scores...';
+  document.getElementById('status-bar').innerHTML='⏳ Fetching live scores...';
   try{
-    const now = new Date();
-    const fmt = d => `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
-    const today = fmt(now);
-    const yest  = fmt(new Date(now.setDate(now.getDate()-1)));
-    // Fetch today and yesterday to catch late-night/overnight games
-    await Promise.allSettled([today, yest].map(async d=>{
-      try{ const data = await fetchESPN(d); processESPN(data); }catch(e){}
+    const now=new Date();
+    const fmt=d=>`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
+    const today=fmt(now);
+    const yest=fmt(new Date(now-864e5));
+    await Promise.allSettled([today,yest].map(async d=>{
+      try{
+        const r=await fetch(`https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?groups=50&limit=100&dates=${d}`);
+        if(r.ok)processESPN(await r.json());
+      }catch(e){}
     }));
-
-    const allRes = [...Object.values(R2res), ...Object.values(S16res)];
-    const liveCount  = allRes.filter(g=>g.status==='inprogress').length/2;
-    const r2Finals   = new Set(Object.values(R2res).filter(g=>g.status==='post').map(g=>g.w+g.l)).size;
-    const s16Finals  = new Set(Object.values(S16res).filter(g=>g.status==='post').map(g=>g.w+g.l)).size;
-    const ts = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
-    document.getElementById('status-bar').innerHTML =
-      `Updated <b>${ts}</b> · R2: ${r2Finals}/16 final · S16: ${s16Finals}/8 final` +
-      (liveCount>0 ? ` · <span class="live-tag">🔴 ${Math.round(liveCount)} LIVE — auto-refreshing</span>` : ' · Refresh for latest');
-
-    if(liveCount > 0) setTimeout(load, 30000);
-  } catch(e){
-    const ts = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
-    document.getElementById('status-bar').innerHTML = `<b>${ts}</b> · Live fetch unavailable · Refresh to retry`;
+    const allVals=[...Object.values(RES.s16),...Object.values(RES.e8),...Object.values(RES.ff),...Object.values(RES.champ)];
+    const live=allVals.filter(g=>g.status==='inprogress').length/2;
+    const ts=new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('status-bar').innerHTML=
+      `Updated <b>${ts}</b>`+
+      (live>0?` · <span class="live-tag">🔴 ${Math.round(live)} game${live>1?'s':''} LIVE — auto-refreshing</span>`:`  · Refresh for latest`);
+    if(live>0)setTimeout(load,30000);
+  }catch(e){
+    document.getElementById('status-bar').innerHTML=`Score fetch failed · Refresh to retry`;
   }
-  buildScoreboard();
-  buildR1();
-  buildR2();
-  buildS16();
-  buildE8();
+  buildScoreboard();buildR1();buildR2();buildS16();buildE8();buildFF();
 }
 
 load();
