@@ -175,8 +175,8 @@ details[open]>*:not(summary){margin-top:12px;}
   <div id="s16"></div>
 </details>
 
-<details open>
-  <summary>🏆 Elite 8 — Mar 28–29</summary>
+<details>
+  <summary>🏆 Elite 8 — Mar 28–29 · All 4 Games Final</summary>
   <div id="e8"></div>
 </details>
 
@@ -323,6 +323,19 @@ setFinal(H,'conn','msu',67,63);  // East
 setFinal(H,'mich','ala',90,77);  // Midwest
 setFinal(H,'tenn','isu',76,62);  // Midwest
 
+// ─── ELITE 8 FINALS ──────────────────────────────────────────────────────────
+const I=RES.e8;
+setFinal(I,'ill','iowa',71,59);   // South  — Sat Mar 28
+setFinal(I,'ariz','pur',79,64);   // West   — Sat Mar 28
+setFinal(I,'mich','tenn',95,62);  // Midwest — Sun Mar 29
+setFinal(I,'conn','duke',73,72);  // East   — Sun Mar 29
+
+// ─── FINAL FOUR FINALS ───────────────────────────────────────────────────────
+const J=RES.ff;
+setFinal(J,'conn','ill',71,62);   // Semi 1: UConn def. Illinois — Sat Apr 4
+setFinal(J,'mich','ariz',91,73);  // Semi 2: Michigan def. Arizona — Sat Apr 4
+// Championship: Michigan vs UConn — Mon Apr 6 · ESPN live will populate
+
 // ─── ESPN AMAP ────────────────────────────────────────────────────────────────
 const AMAP={
   DUKE:"duke",CONN:"conn",MSU:"msu",KU:"ku",SJU:"sju",LOU:"lou",UCLA:"ucla",
@@ -434,26 +447,18 @@ function buildE8(){
 }
 
 function buildFF(){
-  // Semi 1: West winner vs South winner
-  const w1=storeWinner(RES.e8,...E8.west);
-  const w2=storeWinner(RES.e8,...E8.south);
-  // Semi 2: East winner vs Midwest winner
-  const w3=storeWinner(RES.e8,...E8.east);
-  const w4=storeWinner(RES.e8,...E8.midwest);
+  // Semi 1: UConn vs Illinois (conn won 71-62)
+  // Semi 2: Michigan vs Arizona (mich won 91-73)
+  // Championship: Michigan vs UConn — tonight
+  const semi1A='conn', semi1B='ill';
+  const semi2A='mich', semi2B='ariz';
+  const c1=storeWinner(RES.ff,semi1A,semi1B);
+  const c2=storeWinner(RES.ff,semi2A,semi2B);
 
-  function semiBlock(a,b,ffStore){
-    if(a&&b) return gameBlock(a,b,ffStore);
-    if(a) return trow(a,false,false,false,'','')+tbd();
-    if(b) return tbd()+trow(b,false,false,false,'','');
-    return tbd()+tbd();
-  }
-
-  document.getElementById('ff-semi1').innerHTML=semiBlock(w1,w2,RES.ff);
-  document.getElementById('ff-semi2').innerHTML=semiBlock(w3,w4,RES.ff);
+  document.getElementById('ff-semi1').innerHTML=gameBlock(semi1A,semi1B,RES.ff);
+  document.getElementById('ff-semi2').innerHTML=gameBlock(semi2A,semi2B,RES.ff);
 
   // Championship
-  const c1=w1&&w2?storeWinner(RES.ff,w1,w2):null;
-  const c2=w3&&w4?storeWinner(RES.ff,w3,w4):null;
   if(c1&&c2){
     document.getElementById('ff-champ').innerHTML=gameBlock(c1,c2,RES.champ);
   }else if(c1){
@@ -478,14 +483,7 @@ function buildScoreboard(){
   }).join('');
 }
 
-// ─── ESPN LIVE FETCH ──────────────────────────────────────────────────────────
-// Build lookup sets for each round's matchups
-function pairKey(a,b){return [a,b].sort().join('|');}
-const S16pairs=new Set(Object.values(S16).flat().map(([a,b])=>pairKey(a,b)));
-const E8pairs=new Set(Object.values(E8).map(([a,b])=>pairKey(a,b)));
-// FF pairs determined dynamically after E8
-function isS16(a,b){return S16pairs.has(pairKey(a,b));}
-function isE8(a,b){return E8pairs.has(pairKey(a,b));}
+const CHAMP_PAIR=new Set(['conn','mich']); // Tonight's championship matchup
 
 function processESPN(data){
   if(!data.events)return;
@@ -504,40 +502,20 @@ function processESPN(data){
     const sA=parseInt(cs[0].score||0);
     const sB=parseInt(cs[1].score||0);
 
-    // Determine which store
-    let store=null;
-    if(isS16(kA,kB))store=RES.s16;
-    else if(isE8(kA,kB))store=RES.e8;
-    else{
-      // Could be FF or Champ — check if both teams are known E8 winners
-      const e8winners=new Set(Object.values(E8).map(([a,b])=>storeWinner(RES.e8,a,b)).filter(Boolean));
-      if(e8winners.has(kA)&&e8winners.has(kB)){
-        // Determine if it's semi1, semi2, or champ
-        const w1=storeWinner(RES.e8,...E8.west),w2=storeWinner(RES.e8,...E8.south);
-        const w3=storeWinner(RES.e8,...E8.east),w4=storeWinner(RES.e8,...E8.midwest);
-        const semi1=[w1,w2].filter(Boolean);
-        const semi2=[w3,w4].filter(Boolean);
-        if(semi1.includes(kA)&&semi1.includes(kB))store=RES.ff;
-        else if(semi2.includes(kA)&&semi2.includes(kB))store=RES.ff;
-        else store=RES.champ;
-      }
-    }
-    if(!store)return;
-
-    // Don't overwrite confirmed finals
-    if(store[kA]&&store[kA].status==='post'&&store[kA].l===kB)return;
-    if(store[kB]&&store[kB].status==='post'&&store[kB].l===kA)return;
+    // Only process the championship matchup
+    const pk=pairKey(kA,kB);
+    if(pk!==pairKey('conn','mich'))return;
+    // Don't overwrite a confirmed final
+    if(RES.champ[kA]&&RES.champ[kA].status==='post')return;
 
     if(st==='post'){
       const w=cs[0].winner?kA:kB;
       const l=w===kA?kB:kA;
-      const ws=w===kA?sA:sB;
-      const ls=w===kA?sB:sA;
-      store[w]={ws,ls,w,l,status:'post'};
-      store[l]={ws:ls,ls:ws,w,l,status:'post'};
+      RES.champ[w]={ws:w===kA?sA:sB,ls:w===kA?sB:sA,w,l,status:'post'};
+      RES.champ[l]={ws:w===kA?sB:sA,ls:w===kA?sA:sB,w,l,status:'post'};
     }else{
-      store[kA]={ws:sA,ls:sB,w:null,l:null,status:'inprogress'};
-      store[kB]={ws:sB,ls:sA,w:null,l:null,status:'inprogress'};
+      RES.champ[kA]={ws:sA,ls:sB,w:null,l:null,status:'inprogress'};
+      RES.champ[kB]={ws:sB,ls:sA,w:null,l:null,status:'inprogress'};
     }
   });
 }
@@ -548,20 +526,18 @@ async function load(){
     const now=new Date();
     const fmt=d=>`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
     const today=fmt(now);
-    const yest=fmt(new Date(now-864e5));
-    await Promise.allSettled([today,yest].map(async d=>{
-      try{
-        const r=await fetch(`https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?groups=50&limit=100&dates=${d}`);
-        if(r.ok)processESPN(await r.json());
-      }catch(e){}
-    }));
-    const allVals=[...Object.values(RES.s16),...Object.values(RES.e8),...Object.values(RES.ff),...Object.values(RES.champ)];
-    const live=allVals.filter(g=>g.status==='inprogress').length/2;
+    const r=await fetch(`https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?groups=50&limit=100&dates=${today}`);
+    if(r.ok)processESPN(await r.json());
+    const champGame=Object.values(RES.champ)[0];
+    const live=champGame&&champGame.status==='inprogress'?1:0;
+    const champDone=champGame&&champGame.status==='post';
     const ts=new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
     document.getElementById('status-bar').innerHTML=
-      `Updated <b>${ts}</b>`+
-      (live>0?` · <span class="live-tag">🔴 ${Math.round(live)} game${live>1?'s':''} LIVE — auto-refreshing</span>`:`  · Refresh for latest`);
-    if(live>0)setTimeout(load,30000);
+      `Updated <b>${ts}</b>` +
+      (live?` · <span class="live-tag">🔴 CHAMPIONSHIP LIVE — auto-refreshing</span>`:
+       champDone?' · 🏆 Tournament Complete':
+       ' · 🏆 Championship tonight: Michigan vs UConn 8:50 PM ET · Refresh for live scores');
+    if(live)setTimeout(load,30000);
   }catch(e){
     document.getElementById('status-bar').innerHTML=`Score fetch failed · Refresh to retry`;
   }
